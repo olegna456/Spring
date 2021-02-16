@@ -1,0 +1,49 @@
+{
+    "firstName": "Marc Angelo",
+    "lastName": "Carillo",
+    "middleName" : "ORAYT",
+    "suffix" : "N/A",
+    "title" : "Mr.",
+    "streetNumber" : 2,
+    "barangay" : "Callejon Barangay 849.",
+    "municipalityOrCity" : "Pandacan, Manila",
+    "zipcode" : 1011,
+    "birthday" : "1994-05-10" ,
+    "dateHired" : "2021-02-15" ,
+    "gwa" : 1.75 ,
+    "employed" : true
+   
+}
+
+{
+        "id": 2,
+        "firstName": "Ya Si",
+        "lastName": "Wu",
+        "middleName": "PON",
+        "suffix": "N/A",
+        "title": "Ms.",
+        "streetNumber": 1,
+        "barangay": "Binondo",
+        "municipalityOrCity": "Manila",
+        "zipcode": 1011,
+        "birthday": "1997-12-06T00:00:00.000+00:00",
+        "dateHired": "2021-02-15T00:00:00.000+00:00",
+        "gwa": 1.0,
+        "employed": true
+    }
+
+    {
+    "firstName": "Jolissa",
+    "lastName": "Malapitan",
+    "middleName": "T",
+    "suffix": "N/A",
+    "title": "Ms.",
+    "streetNumber": 1234,
+    "barangay": "Tatalon.",
+    "municipalityOrCity": "Quezon City",
+    "zipcode": 1911,
+    "birthday": "1994-05-05",
+    "dateHired": "2021-02-15",
+    "gwa": 1.75,
+    "employed": true
+}

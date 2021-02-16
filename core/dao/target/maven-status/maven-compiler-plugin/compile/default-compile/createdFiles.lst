@@ -1,0 +1,4 @@
+com\exist\dao\PersonDao.class
+com\exist\dao\ContactInformationDao.class
+com\exist\dao\RolesDao.class
+com\exist\dao\DaoApplication.class

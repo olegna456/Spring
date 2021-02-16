@@ -1,0 +1,4 @@
+com\exist\app\AppApplication.class
+com\exist\app\ContactInformationResource.class
+com\exist\app\PersonResource.class
+com\exist\app\RolesResource.class
