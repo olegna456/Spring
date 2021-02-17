@@ -42,7 +42,7 @@ public class Roles implements Serializable {
 		return this.role;
 	}
 
-	private void setPersonRole(List<Person> pRole) {
+	public void setPersonRole(List<Person> pRole) {
 		this.pRole = pRole;
 	}
 
