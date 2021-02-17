@@ -1,6 +1,7 @@
 package com.exist.service;
 import com.exist.dao.PersonDao;
 import com.exist.model.Person;
+import com.exist.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.ComponentScan;
@@ -40,7 +41,8 @@ public class PersonService {
 	}
 	
 	public Person updatePerson(int id, Person person) {
-		Person personToUpdate = personDao.findById(id).orElse(null);
+		Person personToUpdate = personDao.findById(id)
+									.orElseThrow(() -> new UserNotFoundException("User " + id + "not found!"));
 		personToUpdate.setFirstName(person.getFirstName());
 		personToUpdate.setLastName(person.getLastName());
 		personToUpdate.setMiddleName(person.getMiddleName());
@@ -70,7 +72,7 @@ public class PersonService {
 			personByOrderToReturn =	getPersonsByGwa();
 			personByOrderToReturn = setRoleToNull(personByOrderToReturn);
 		} else {
-			return null;
+			throw new ChoiceNotFoundException("yource choice by order not found!");
 		}
 		return personByOrderToReturn;
 	}

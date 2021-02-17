@@ -25,6 +25,7 @@
 		<module>app</module>
 		<module>core</module>
 		<module>util</module>
+		<module>infra</module>
 	</modules>
 
 

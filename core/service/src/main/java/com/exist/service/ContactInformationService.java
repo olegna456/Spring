@@ -2,6 +2,7 @@ package com.exist.service;
 import com.exist.dao.ContactInformationDao;
 import com.exist.model.ContactInformation;
 import com.exist.dao.PersonDao;
+import com.exist.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.ComponentScan;
@@ -44,19 +45,4 @@ public class ContactInformationService {
 		return contactInformationDao.save(contactinformation);
 
 	}
-
-	// public void updateContact(int id, ContactInformation contactinformation) {
-	// 	Optional<ContactInformation> contactToUpdate = contactInformationDao.findById(id);
-	// 	// contactToUpdate.setContactId(id);
-	// 	ContactInformation con = contactToUpdate.get();
-	// 	con.setMobileNumber(contactinformation.getMobileNumber());
-	// 	con.setLandline(contactinformation.getLandline());
-	// 	con.setEmail(contactinformation.getEmail());
-	// 	contactInformationDao.save(con);
-	// 	// ContactInformation contactInformationToUpdate = contactInformationDao.findById(id).orElse(null);
-	// 	// contactInformationToUpdate.setMobileNumber(contactinformation.getMobileNumber());
-	// 	// contactInformationToUpdate.setLandline(contactinformation.getLandline());
-	// 	// contactInformationToUpdate.setEmail(contactinformation.getEmail());
-	// 	// return contactInformationDao.save(contactInformationToUpdate);
-	// }
 }

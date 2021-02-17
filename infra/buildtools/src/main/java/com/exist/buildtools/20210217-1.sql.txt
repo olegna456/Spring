@@ -1,0 +1,56 @@
+CREATE DATABASE persons;
+
+CREATE TABLE public.person
+(
+    id integer NOT NULL DEFAULT nextval('person_id_seq'::regclass),
+    barangay character varying(255) COLLATE pg_catalog."default",
+    birthday timestamp without time zone,
+    date_hired timestamp without time zone,
+    currently_employed boolean,
+    first_name character varying(255) COLLATE pg_catalog."default",
+    grade_weighted_average double precision,
+    last_name character varying(255) COLLATE pg_catalog."default",
+    middle_name character varying(255) COLLATE pg_catalog."default",
+    municipality_city character varying(255) COLLATE pg_catalog."default",
+    street_number integer,
+    suffix character varying(255) COLLATE pg_catalog."default",
+    title character varying(255) COLLATE pg_catalog."default",
+    zipcode integer,
+    CONSTRAINT person_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE public.contactinformation
+(
+    id integer NOT NULL DEFAULT nextval('contactinformation_id_seq'::regclass),
+    email character varying(255) COLLATE pg_catalog."default",
+    landline character varying(255) COLLATE pg_catalog."default",
+    mobile_number character varying(255) COLLATE pg_catalog."default",
+    person_id integer,
+    CONSTRAINT contactinformation_pkey PRIMARY KEY (id),
+    CONSTRAINT fkevffgdl2bycy02wo32yy72nfr FOREIGN KEY (person_id)
+        REFERENCES public.person (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+
+CREATE TABLE public.roles
+(
+    id integer NOT NULL DEFAULT nextval('roles_id_seq'::regclass),
+    role character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT roles_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE public.person_role
+(
+    person_id integer NOT NULL,
+    role_id integer NOT NULL,
+    CONSTRAINT fk1hakvwv4tnv13s8ywg4n90vyj FOREIGN KEY (role_id)
+        REFERENCES public.roles (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fkhyx1efsls0f00lxs6xd4w2b3j FOREIGN KEY (person_id)
+        REFERENCES public.person (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
