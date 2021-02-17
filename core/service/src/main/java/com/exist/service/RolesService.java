@@ -56,16 +56,23 @@ public class RolesService {
 	}
 
 	public Person addRoleToPerson(int personId, int roleId) {
-		Optional<Roles> roleToAdd = rolesdao.findById(roleId);
-		Optional<Person> person = personDao.findById(personId);
-		List<Roles> role = person.get().getPersonRole();
-		role.add(roleToAdd.get());
-		Person personToAddRole = person.get();
-		personToAddRole.setRole(role);
-		return personDao.save(personToAddRole);
+		boolean duplicate = checkRoleDuplicate(personId, roleId);
+		if(duplicate) {
+			throw new ResourceAlreadyExists("Role already Existing on chosen person.");
+		} else {
+			Optional<Roles> roleToAdd = rolesdao.findById(roleId);
+			Optional<Person> person = personDao.findById(personId);
+			List<Roles> role = person.get().getPersonRole();
+			role.add(roleToAdd.get());
+			Person personToAddRole = person.get();
+			personToAddRole.setRole(role);
+			return personDao.save(personToAddRole);
+		}		
+		
 	}
 
 	public void deletePersonRole(int personId, int roleId) {
+
 		Optional<Person> person = personDao.findById(personId);
 		List<Roles> role = person.get().getPersonRole();
 		Iterator<Roles> iterate = role.iterator();
@@ -78,5 +85,19 @@ public class RolesService {
 		Person updatePersonRole = person.get();
 		updatePersonRole.setRole(role);
 		personDao.save(updatePersonRole);
+	}
+
+	public boolean checkRoleDuplicate(int personId, int roleId) {
+		boolean duplicate = false;
+		Optional<Person> personCheck = personDao.findById(personId);
+		List<Roles> role = personCheck.get().getPersonRole();
+		Iterator<Roles> iterate = role.iterator();
+		while(iterate.hasNext()) {
+			Roles roleToCheck = iterate.next();
+			if(roleToCheck.getId() == roleId) {
+				duplicate = true;
+			}
+		}
+		return duplicate;
 	}
 }

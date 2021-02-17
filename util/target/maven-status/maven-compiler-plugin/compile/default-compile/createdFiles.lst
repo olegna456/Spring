@@ -1,4 +1,5 @@
 com\exist\util\ChoiceNotFoundException.class
+com\exist\util\ResourceAlreadyExists.class
 com\exist\util\UserNotFoundException.class
 com\exist\util\UtilApplication.class
 com\exist\util\RoleNotFoundException.class

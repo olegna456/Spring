@@ -41,8 +41,7 @@ public class PersonService {
 	}
 	
 	public Person updatePerson(int id, Person person) {
-		Person personToUpdate = personDao.findById(id)
-									.orElseThrow(() -> new UserNotFoundException("User " + id + "not found!"));
+		Person personToUpdate = personDao.findById(id).orElseThrow(() -> new UserNotFoundException("User " + id + "not found!"));
 		personToUpdate.setFirstName(person.getFirstName());
 		personToUpdate.setLastName(person.getLastName());
 		personToUpdate.setMiddleName(person.getMiddleName());
