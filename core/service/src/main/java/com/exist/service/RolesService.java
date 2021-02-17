@@ -31,8 +31,8 @@ public class RolesService {
 	}
 
 	public Roles findById(int id) {
-		Optional<Roles> role = rolesdao.findById(id);
-		return role.get();
+		Roles role = rolesdao.findById(id).get();
+		return role;
 	}
 
 	public List<Roles> getAllRoles() {
@@ -64,9 +64,10 @@ public class RolesService {
 		} else {
 			Optional<Roles> roleToAdd = rolesdao.findById(roleId);
 			Optional<Person> person = personDao.findById(personId);
-			List<Roles> role = person.get().getPersonRole();
-			role.add(roleToAdd.get());
 			Person personToAddRole = person.get();
+			List<Roles> role = personToAddRole.getPersonRole();
+			role.add(roleToAdd.get());
+			role = setRoleToNull(role);			
 			personToAddRole.setRole(role);			
 			return personDao.save(personToAddRole);
 		}		
