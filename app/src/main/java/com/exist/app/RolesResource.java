@@ -53,12 +53,12 @@ public class RolesResource {
 	@PostMapping("addRoleToPerson/{personId}/{roleId}")
 	public ResponseEntity<Person> addRoleToPerson(@PathVariable("personId") int personId, @PathVariable("roleId") int roleId) {
 		Person addRolePerson = rs.addRoleToPerson(personId, roleId);
-		return new ResponseEntity<>(addRolePerson, HttpStatus.OK);
-	}
-
-	@DeleteMapping("/deletePersonRole/{personId/{roleId}")
-	public ResponseEntity<?> deletePersonRole(@PathVariable("personId") int personId, @PathVariable("roleId") int roleId) {
-		rs.deletePersonRole(personId, roleId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+
+	@DeleteMapping("deleteRoleFromPerson/{personId}/{roleId}")
+	public ResponseEntity<Person> deleteRoleFromPerson(@PathVariable("personId") int personId, @PathVariable("roleId") int roleId) {
+		Person personTobeDeletedRole = rs.deleteRoleFromPerson(personId, roleId);
+		return new ResponseEntity<>(personTobeDeletedRole, HttpStatus.OK);
+	}	
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+import java.util.stream.*;
+import java.util.stream.Collectors;
 import java.util.*;
 
 @Service
@@ -65,27 +67,27 @@ public class RolesService {
 			List<Roles> role = person.get().getPersonRole();
 			role.add(roleToAdd.get());
 			Person personToAddRole = person.get();
-			personToAddRole.setRole(role);
+			personToAddRole.setRole(role);			
 			return personDao.save(personToAddRole);
 		}		
 		
 	}
 
-	public void deletePersonRole(int personId, int roleId) {
-
-		Optional<Person> person = personDao.findById(personId);
-		List<Roles> role = person.get().getPersonRole();
+	public Person deleteRoleFromPerson(int personId, int roleId) {
+		Person person = personDao.findById(personId).get();
+		List<Roles> role = person.getPersonRole();
 		Iterator<Roles> iterate = role.iterator();
 		while(iterate.hasNext()) {
-			Roles roleToBeDeleted = iterate.next();
-			if(roleToBeDeleted.getId() == roleId) {
+			Roles currentRole = iterate.next();
+			if(currentRole.getId() == roleId) {
 				iterate.remove();
 			}
 		}
-		Person updatePersonRole = person.get();
-		updatePersonRole.setRole(role);
-		personDao.save(updatePersonRole);
+		person.setRole(role);
+		return personDao.save(person);
 	}
+
+	
 
 	public boolean checkRoleDuplicate(int personId, int roleId) {
 		boolean duplicate = false;

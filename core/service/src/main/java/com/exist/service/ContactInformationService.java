@@ -12,7 +12,7 @@ import com.exist.model.Person;
 
 @Service
 // @EnableJpaRepositories("com.exist.dao")
-@ComponentScan(basePackages = {"com.exist.dao"})
+// @ComponentScan(basePackages = {"com.exist.dao"})
 public class ContactInformationService {
 
 	@Autowired

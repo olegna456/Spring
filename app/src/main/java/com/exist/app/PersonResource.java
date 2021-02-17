@@ -37,9 +37,9 @@ public class PersonResource {
 	}
 	//okay
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Person> updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
+	public ResponseEntity<?> updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
 		Person updatePerson = personService.updatePerson(id, person);
-		return new ResponseEntity<>(updatePerson, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	//okay
 	@DeleteMapping("/delete/{id}")

@@ -41,5 +41,8 @@ public class ContactInformationResource {
 		ContactInformation editPerson = cis.editContactInformation(contactId, contactinformation);
 		return new ResponseEntity<>(editPerson, HttpStatus.OK);
 	}
+
+	// -@GetMapping("/getContactPerson/{personId}")
+
 }
 	
