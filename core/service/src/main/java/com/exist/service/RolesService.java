@@ -16,10 +16,11 @@ import java.util.*;
 @Service
 public class RolesService {
 
-	
-	private final RolesDao rolesdao;
-	private final PersonDao personDao;
 	@Autowired
+	private final RolesDao rolesdao;
+	@Autowired
+	private final PersonDao personDao;
+	
 	
 	public RolesService(RolesDao rolesdao, PersonDao personDao) {
 		this.rolesdao = rolesdao;
@@ -87,8 +88,6 @@ public class RolesService {
 		person.setRole(role);
 		return personDao.save(person);
 	}
-
-	
 
 	public boolean checkRoleDuplicate(int personId, int roleId) {
 		boolean duplicate = false;

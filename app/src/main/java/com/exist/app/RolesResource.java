@@ -51,9 +51,9 @@ public class RolesResource {
 	}
 
 	@PostMapping("addRoleToPerson/{personId}/{roleId}")
-	public ResponseEntity<Person> addRoleToPerson(@PathVariable("personId") int personId, @PathVariable("roleId") int roleId) {
-		Person addRolePerson = rs.addRoleToPerson(personId, roleId);
-		return new ResponseEntity<>(addRolePerson, HttpStatus.OK);
+	public Person addRoleToPerson(@PathVariable("personId") int personId, @PathVariable("roleId") int roleId) {
+		return rs.addRoleToPerson(personId, roleId);
+		//return new ResponseEntity<>(addRolePerson, HttpStatus.OK);
 	}
 
 	@DeleteMapping("deleteRoleFromPerson/{personId}/{roleId}")

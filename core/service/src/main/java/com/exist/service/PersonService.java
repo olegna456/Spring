@@ -2,6 +2,7 @@ package com.exist.service;
 import com.exist.dao.PersonDao;
 import com.exist.model.Person;
 import com.exist.util.*;
+import com.exist.model.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,14 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-@ComponentScan(basePackages = {"com.exist.dao"})
 public class PersonService {
 	
 	@Autowired
-	private final PersonDao personDao;
+	private final PersonDao personDao;	
+	
 
 	public PersonService(PersonDao personDao) {
 		this.personDao = personDao;
+		
 	}
 
 	public Person addPerson(Person person) {
@@ -42,6 +44,7 @@ public class PersonService {
 	
 	public Person updatePerson(int id, Person person) {
 		Person personToUpdate = personDao.findById(id).orElseThrow(() -> new UserNotFoundException("User " + id + "not found!"));
+		// person.setId(id);
 		personToUpdate.setFirstName(person.getFirstName());
 		personToUpdate.setLastName(person.getLastName());
 		personToUpdate.setMiddleName(person.getMiddleName());
@@ -102,21 +105,3 @@ public class PersonService {
 		return personOrderByGwa;
 	}
 }
-
-
-
-
-// public void deleteConstraint(Roles role) {
-	// 	List<Person> person = personDao.findAll();
-	// 	person.stream().forEach(person2 -> {
-	// 		Iterator<Roles> iterate = person2.getPersonRole().iterator();
-	// 		while(iterate.hasNext()) {
-	// 			Roles deleteRole = iterate.next();
-	// 			if(deleteRole.getId() == role.getId()) {
-	// 				iterate.remove();
-	// 			}
-
-	// 			personDao.save(person2);
-	// 		}
-	// 	});
-	// }

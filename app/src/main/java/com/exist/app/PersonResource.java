@@ -10,8 +10,6 @@ import org.springframework.http.*;
 import java.util.*;
 
 @RestController
-@ComponentScan(basePackageClasses = {com.exist.service.PersonService.class, com.exist.service.ContactInformationService.class})
-@EntityScan("com.exist.model")
 @RequestMapping(path="api")
 
 public class PersonResource {
@@ -39,7 +37,7 @@ public class PersonResource {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
 		Person updatePerson = personService.updatePerson(id, person);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(updatePerson, HttpStatus.OK);
 	}
 	//okay
 	@DeleteMapping("/delete/{id}")
