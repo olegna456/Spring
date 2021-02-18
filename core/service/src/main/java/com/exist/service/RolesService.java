@@ -54,8 +54,8 @@ public class RolesService {
 		return rolesdao.save(role);
 	}
 
-	public void deleteRole(int roleId) {
-		rolesdao.deleteById(roleId);
+	public void deleteRole(int roleId) {		
+		rolesdao.deleteById(roleId);		
 	}
 
 	public Person addRoleToPerson(int personId, int roleId) {

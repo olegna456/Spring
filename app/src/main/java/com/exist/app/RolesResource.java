@@ -4,12 +4,14 @@ import com.exist.model.Roles;
 import com.exist.model.Person;
 import com.exist.service.RolesService;
 import com.exist.service.PersonService;
+import com.exist.util.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
 import java.util. *;
+
 
 @RestController
 @ComponentScan(basePackageClasses = {com.exist.service.PersonService.class, com.exist.service.RolesService.class})
@@ -46,8 +48,13 @@ public class RolesResource {
 
 	@DeleteMapping("/delete/{roleId}")
 	public ResponseEntity<?> deleteRole(@PathVariable("roleId") int roleId) {
-		rs.deleteRole(roleId);
-		return new ResponseEntity<>("Role id: " + roleId + " successfully deleted", HttpStatus.OK);
+		try {
+			rs.deleteRole(roleId);
+			return new ResponseEntity<>("Role with id: " + roleId + " successfully deleted", HttpStatus.OK);
+		}catch(RoleNotFoundException ex) {
+			String message = "Role id not found";
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		}		
 	}
 
 	@PostMapping("addRoleToPerson/{personId}/{roleId}")
