@@ -27,7 +27,7 @@ public class ContactInformationResource {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteContact(@PathVariable("id") int id) {
 		cis.deleteContactInformation(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Contact Information with id: " + id + " successfully deleted", HttpStatus.OK);
 	}
 
 	@PostMapping("/addContact/{personId}")

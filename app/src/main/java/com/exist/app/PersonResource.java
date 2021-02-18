@@ -43,7 +43,7 @@ public class PersonResource {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deletePerson(@PathVariable("id") int id) {
 		personService.deletePersonById(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Person with id " + id + " successfully deleted", HttpStatus.OK);
 	}
 
 	@GetMapping("/personBy/{choice}")

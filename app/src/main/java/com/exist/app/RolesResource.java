@@ -45,9 +45,9 @@ public class RolesResource {
 	}
 
 	@DeleteMapping("/delete/{roleId}")
-	public ResponseEntity<Roles> deleteRole(@PathVariable("roleId") int roleId) {
+	public ResponseEntity<?> deleteRole(@PathVariable("roleId") int roleId) {
 		rs.deleteRole(roleId);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>("Role id: " + roleId + " successfully deleted", HttpStatus.OK);
 	}
 
 	@PostMapping("addRoleToPerson/{personId}/{roleId}")
