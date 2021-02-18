@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import com.exist.model.Person;
+import com.exist.model.Roles;
 
 @Service
 public class ContactInformationService {
@@ -30,11 +31,23 @@ public class ContactInformationService {
 		contactInformationDao.deleteById(id);
 	}
 
+	public List<Roles> setRoleToNull(List<Roles> list) {
+		list.stream()
+			.forEach(role -> {
+				role.setPersonRole(null);				
+			});
+		return list;
+	}
+
+
 	public Person addContactInformationToPerson(int personId, ContactInformation contactinformation) {
 		Person person = personDao.findById(personId).get();
 		List<ContactInformation> addContact = person.getContactInformation();
 		addContact.add(contactinformation);
 		person.setContactInformation(addContact);
+		List<Roles> role = person.getPersonRole();
+		role = setRoleToNull(role);
+		person.setRole(role);
 		return personDao.save(person);
 	}
 

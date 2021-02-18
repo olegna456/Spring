@@ -32,8 +32,8 @@ public class ContactInformationResource {
 
 	@PostMapping("/addContact/{personId}")
 	public ResponseEntity<Person> addContactInformationToPerson(@PathVariable("personId") int personId, @RequestBody ContactInformation contactinformation) {
-		Person personAddContact = cis.addContactInformationToPerson(personId, contactinformation);
-		return new ResponseEntity<>(HttpStatus.OK);
+		
+		return new ResponseEntity<>(cis.addContactInformationToPerson(personId, contactinformation), HttpStatus.OK);
 	}
 
 	@PutMapping("/editContact/{contactId}")
