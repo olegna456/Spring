@@ -23,10 +23,6 @@ public class ContactInformationService {
 		this.personDao = personDao;
 	}
 
-	public ContactInformation addContact(ContactInformation contactinformation) {
-		return contactInformationDao.save(contactinformation);
-	}
-
 	public void deleteContactInformation(int id) {
 		contactInformationDao.deleteById(id);
 	}
